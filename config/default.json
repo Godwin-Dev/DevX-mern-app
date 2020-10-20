@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://developerX:developerX@devx.quv2b.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://developerX:developerX@devx.quv2b.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "*mynameisgodwin*"
 }
