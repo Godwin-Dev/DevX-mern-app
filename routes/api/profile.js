@@ -7,6 +7,7 @@ const { check, validationResult, body } = require("express-validator");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 
 //@route    GET api/profile/me
 //@desc     Get current users profile
@@ -41,7 +42,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty) {
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     const {
@@ -142,10 +143,15 @@ router.get("/user/:user_id", async (req, res) => {
 //@access   Private
 router.delete("/", auth, async (req, res) => {
   try {
+    //Delete User Post
+    await Post.deleteMany({ user: req.user.id });
+
     //Delete Profile
-    await Profile.findByIdAndRemove({ user: req.user.id });
+    await Profile.findOneAndRemove({ user: req.user.id });
+
     //Delete User
-    // await User.findByIdAndRemove({ _id: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
+    
     res.json({ msg: "User deleted" });
   } catch (err) {
     console.error(err.message);
@@ -169,7 +175,7 @@ router.put(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.aaray() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const {
@@ -246,7 +252,7 @@ router.put(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.aaray() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const {
