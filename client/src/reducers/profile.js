@@ -7,7 +7,7 @@ import {
   PROFILE_ERROR,
   UPDATE_PROFILE,
 } from "../actions/types";
-
+ 
 const initialState = {
   profile: null,
   profiles: [],

@@ -1,6 +1,0 @@
-{
-    "mongoURI":"mongodb+srv://developerX:developerX@devx.quv2b.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "*mynameisgodwin*",
-    "githubClientId": "b5e18ecac32c2620ded3",
-    "githubSecret": "780da66ec4edb3322a46013c009758a38422ef3f"
-}
